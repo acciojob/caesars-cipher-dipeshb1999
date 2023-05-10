@@ -22,3 +22,34 @@ function rot13(encodedStr){
 // console.log(rot13("SERR YBIR? NPPVBWBO"));
 
 module.exports = rot13;
+function rot13(str) {
+  // Split the input string into an array of characters
+  var chars = str.split("");
+
+  // Loop through each character in the array
+  for (var i = 0; i < chars.length; i++) {
+    var char = chars[i];
+
+    // Check if the character is a letter
+    if (/[A-Z]/.test(char)) {
+      // Convert the character code to a value between 0 and 25
+      var charCode = char.charCodeAt(0) - 65;
+
+      // Apply the ROT13 transformation by adding 13 and taking modulo 26
+      var decodedCharCode = (charCode + 13) % 26;
+
+      // Convert the decoded character code back to a character
+      var decodedChar = String.fromCharCode(decodedCharCode + 65);
+
+      // Replace the original character with the decoded character
+      chars[i] = decodedChar;
+    }
+  }
+
+  // Join the array of characters back into a string
+  var decodedStr = chars.join("");
+
+  // Return the decoded string
+  return decodedStr;
+}
+
