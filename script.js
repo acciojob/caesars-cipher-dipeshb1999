@@ -52,4 +52,7 @@ function rot13(str) {
   // Return the decoded string
   return decodedStr;
 }
+var encodedString = "EBG13 rknzcyr.";
+var decodedString = rot13(encodedString);
+console.log(decodedString); // Output: ROT13 example.
 
