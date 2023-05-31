@@ -1,16 +1,45 @@
 <!DOCTYPE html>
-
 <html>
+  <head>
+    <title>ROT13 Decoder</title>
+  </head>
+  <body>
+    <textarea id="input" rows="4" cols="50"></textarea>
+    <button onclick="decode()">Decode</button>
+    <br>
+    <textarea id="output" rows="4" cols="50" readonly></textarea>
 
-<head>
-	<link rel="stylesheet" href="styles.css">
-</head>
+    <script>
+      function decode() {
+        const input = document.getElementById("input").value;
+        const output = document.getElementById("output");
+        const decoded = rot13(input);
+        output.value = decoded;
+      }
 
-<body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-   </script>
+      function rot13(str) {
+        let decoded = "";
 
-</body>
+        for (let i = 0; i < str.length; i++) {
+          let char = str[i];
 
+          if (char.match(/[A-Z]/)) {
+            // Convert uppercase letters to their ASCII code
+            let code = str.charCodeAt(i);
+
+            // Apply the ROT13 cipher to uppercase letters
+            if (code >= 65 && code <= 77) {
+              char = String.fromCharCode(code + 13);
+            } else if (code >= 78 && code <= 90) {
+              char = String.fromCharCode(code - 13);
+            }
+          }
+
+          decoded += char;
+        }
+
+        return decoded;
+      }
+    </script>
+  </body>
 </html>
